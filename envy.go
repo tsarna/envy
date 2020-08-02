@@ -13,14 +13,14 @@ import (
 // for all flags in the default FlagSet (flag.CommandLine) in the
 // form of PREFIX_FLAGNAME.
 func Parse(p string) {
-	update(p, flag.CommandLine)
+	ParseFlagSet(p, flag.CommandLine)
 }
 
-// update takes a prefix string p and *flag.FlagSet. Each flag
+// ParseFlagSet takes a prefix string p and *flag.FlagSet. Each flag
 // in the FlagSet is exposed as an upper case environment variable
 // prefixed with p. Any flag that was not explicitly set by a user
 // is updated to the environment variable, if set.
-func update(p string, fs *flag.FlagSet) {
+func ParseFlagSet(p string, fs *flag.FlagSet) {
 	// Build a map of explicitly set flags.
 	set := map[string]interface{}{}
 	fs.Visit(func(f *flag.Flag) {
